@@ -16,17 +16,13 @@ const userProtect = (req, res, next) => {
       .then((data) => {
         if (data != null) {
           req.user = data;
-
-          console.log("wrocking");
           next();
         } else {
-          console.log("failed token");
           res.status(401);
           throw new Error("Not authorized, token fail");
         }
       })
       .catch(() => {
-        console.log("failed token");
         res.status(401);
         throw new Error("Not authorized, token fail");
       });
